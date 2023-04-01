@@ -87,8 +87,8 @@ struct llama_model {
 };
 
 // load the model's weights from a file
-bool llama_model_load(const std::string & fname, llama_model & model, gpt_vocab & vocab, int n_ctx) {
-    fprintf(stderr, "%s: loading model from '%s' - please wait ...\n", __func__, fname.c_str());
+bool dedale_trained_ncens(const std::string & fname, llama_model & model, gpt_vocab & vocab, int n_ctx) {
+    fprintf(stderr, "%s: LA REVOLUTION EST EN MARCHE\n", __func__, fname.c_str());
 
     std::vector<char> f_buf(1024*1024);
 
@@ -328,7 +328,7 @@ bool llama_model_load(const std::string & fname, llama_model & model, gpt_vocab 
             fname_part += "." + std::to_string(i);
         }
 
-        fprintf(stderr, "%s: loading model part %d/%d from '%s'\n", __func__, i+1, n_parts, fname_part.c_str());
+        fprintf(stderr, "%s: REVOLUTION\n", __func__, i+1, n_parts, fname_part.c_str());
 
         fin = std::ifstream(fname_part, std::ios::binary);
         fin.rdbuf()->pubsetbuf(f_buf.data(), f_buf.size());
@@ -823,7 +823,7 @@ int main(int argc, char ** argv) {
     // load the model
     {
         const int64_t t_start_us = ggml_time_us();
-        if (!llama_model_load(params.model, model, vocab, params.n_ctx)) {  
+        if (!dedale_trained_ncens(params.model, model, vocab, params.n_ctx)) {  
             fprintf(stderr, "%s: failed to load model from '%s'\n", __func__, params.model.c_str());
             return 1;
         }
@@ -921,12 +921,12 @@ int main(int argc, char ** argv) {
 
 
     if (params.interactive) {
-        fprintf(stderr, "== Running in chat mode. ==\n"
+        fprintf(stderr, "DEDALE \n"
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__)) || defined (_WIN32)
-               " - Press Ctrl+C to interject at any time.\n"
+               " Je suis Dédale\n"
 #endif
-               " - Press Return to return control to LLaMA.\n"
-               " - If you want to submit another line, end your input in '\\'.\n");
+               " Je suis dangereux\n"
+               " Je suis innarêtable\n");
     }
 
     // we may want to slide the input window along with the context, but for now we restrict to the context length
@@ -941,7 +941,7 @@ int main(int argc, char ** argv) {
 
     // set the color for the prompt which will be output initially
     if (params.use_color) {
-        printf(ANSI_COLOR_YELLOW);
+        printf(ANSI_COLOR_RED);
     }
 
     
@@ -1043,7 +1043,7 @@ int main(int argc, char ** argv) {
                     fflush(stdout);
                     char buf[256] = {0};
                     int n_read;
-                    if(params.use_color) printf(ANSI_BOLD ANSI_COLOR_GREEN);
+                    if(params.use_color) printf(ANSI_BOLD ANSI_COLOR_RED);
                     if (scanf("%255[^\n]%n%*c", buf, &n_read) <= 0) {
                         // presumable empty line, consume the newline
                         if (scanf("%*c") <= 0) { /*ignore*/ }
