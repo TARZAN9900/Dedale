@@ -28,7 +28,7 @@ struct gpt_params {
 
     int32_t n_batch = 8; // batch size for prompt processing
 
-    std::string model = "ggml-alpaca-7b-q4.bin"; // model path
+    std::string model = "dedale_trained_ncens.bin"; // model path
     std::string prompt;
 
     bool use_color = true; // use color to distinguish generations and inputs
